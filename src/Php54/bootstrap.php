@@ -16,7 +16,7 @@ if (PHP_VERSION_ID < 50400) {
         function trait_exists($class, $autoload = true) { return $autoload && class_exists($class, $autoload) && false; }
     }
     if (!function_exists('class_uses')) {
-        function class_uses($class, $autoload = true) { return $autoload && class_exists($class, $autoload) && false; }
+        function class_uses($class, $autoload = true) { return $autoload && class_exists(is_object($class) ? get_class($class) : $class, $autoload) && false; }
     }
     if (!function_exists('hex2bin')) {
         function hex2bin($data) { return p\Php54::hex2bin($data); }
